@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ContactForm from "./Components/ContactForm";
 import Filter from "./Components/Filter";
 import ContactList from "./Components/ContactList";
 
 export default function App() {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(
+    () => JSON.parse(window.localStorage.getItem("contacts")) ?? ""
+  );
   const [filter, setFilter] = useState("");
 
   const addNewContact = (obj) => {
@@ -29,6 +31,10 @@ export default function App() {
       contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
+
+  useEffect(() => {
+    window.localStorage.setItem("contacts", JSON.stringify(contacts));
+  }, [contacts]);
 
   return (
     <div>

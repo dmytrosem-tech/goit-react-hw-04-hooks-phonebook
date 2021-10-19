@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { v4 as uuid } from "uuid";
 import styles from "./ContactForm.module.css";
 
@@ -78,3 +79,7 @@ export default function ContactForm({ addNewContact }) {
     </form>
   );
 }
+
+ContactForm.propTypes = {
+  addNewContact: PropTypes.func,
+};

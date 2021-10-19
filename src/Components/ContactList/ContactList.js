@@ -1,12 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 import ContactItem from "../ContactItem";
 import styles from "./ContactList.module.css";
 
-function ContactList({ contacts, deleteContact }) {
+export default function ContactList({ contacts, deleteContact }) {
   return (
     <ul className={styles.contacts__list}>
       {contacts.map(({ name, number, id }) => (
         <ContactItem
+          key={id}
           name={name}
           number={number}
           id={id}
@@ -17,4 +19,7 @@ function ContactList({ contacts, deleteContact }) {
   );
 }
 
-export default ContactList;
+ContactList.propTypes = {
+  contacts: PropTypes.object,
+  deleteContact: PropTypes.func,
+};
